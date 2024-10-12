@@ -6,8 +6,8 @@
 
 body {
   height: 100vh;
-  overflow-x: hidden;
-  background-color: black;
+  overflow: hidden;
+  background-color: black; /* Keep the background black to avoid gaps */
 }
 
 .stars {
@@ -16,8 +16,8 @@ body {
   left: 0;
   width: 200vw; /* Double the width for continuous scrolling */
   height: 100vh;
-  overflow-x: hidden;
-  background-color: black; /* Ensure the background color moves with stars */
+  background: black; /* Ensure background stays black */
+  overflow: hidden;
   animation: moveStars 50s linear infinite;
   z-index: -1; /* Behind the rotating sphere */
 }
@@ -45,7 +45,7 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100vw);
+    transform: translateX(-100vw); /* Move stars without affecting the background */
   }
 }
 
@@ -58,13 +58,13 @@ body {
 }
 
 .sphere-container {
-  position: absolute; /* Ensure the container stays in one spot */
-  right: 50px; /* Adjust this to place it where you like */
+  position: absolute;
+  right: 5%; /* Stay fixed on the right */
   top: 50%;
-  transform: translateY(-50%); /* Center the sphere vertically */
+  transform: translateY(-50%);
   perspective: 1000px;
-  width: 300px;
-  height: 300px; /* Fixed size */
+  width: 20vw; /* Responsive width */
+  height: 20vw; /* Ensure square ratio */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,31 +80,54 @@ body {
 #sphere div {
   position: absolute;
   color: white;
-  font-size: 18px;
+  font-size: 1.5vw; /* Responsive text size */
   text-align: center;
   transform-origin: 50% 50%;
 }
 
-  
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sphere-container {
+    width: 35vw;
+    height: 35vw;
+  }
+
+  #sphere div {
+    font-size: 2.5vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .sphere-container {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  #sphere div {
+    font-size: 4vw;
+  }
+}
+
+/* For screens down to 320px */
+@media (max-width: 320px) {
+  .sphere-container {
+    width: 60vw;
+    height: 60vw;
+  }
+
+  #sphere div {
+    font-size: 5vw;
+  }
+}
+
 
 .text-container{
   color: red;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  top: 40%;
-  left: 40px;
 }
 
 .header-button{
   width: 100px;
-}
-
-
-@media (max-width: 350px) {
-  .stars{
-  overflow-x: hidden;
-  }
- 
 }
